@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Gym">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <title>Gym</title>
+  <style>
+    @font-face { font-family: "Bebas Neue"; src: url("fonts/bebas-neue.woff2") format("woff2"); font-display: swap; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #0a0a0a; color: #f2f2f2; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    [hidden] { display: none !important; }
+    .gate { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)); text-align: center; }
+    .g-logo { font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif; font-size: 80px; letter-spacing: 4px; line-height: 1; color: #d4ff00; margin-bottom: 18px; }
+    form { width: 100%; max-width: 340px; display: flex; flex-direction: column; gap: 10px; }
+    input { width: 100%; min-height: 56px; padding: 8px 12px; background: #1c1c1c; border: 1px solid #2b2b2b; border-radius: 12px; color: inherit; font: inherit; font-size: 20px; text-align: center; letter-spacing: 2px; outline: none; }
+    input:focus { border-color: #d4ff00; }
+    input::placeholder { color: #585858; letter-spacing: 1px; font-size: 16px; }
+    input:disabled { opacity: .5; }
+    button { font: inherit; cursor: pointer; }
+    #gBtn { min-height: 54px; border: 0; border-radius: 12px; background: #d4ff00; color: #0a0a0a; font-size: 17px; font-weight: 700; }
+    #gBtn:disabled { opacity: .45; cursor: default; }
+    .g-msg { min-height: 20px; font-size: 14px; color: #ff6b61; }
+    .g-msg.info { color: #a3a3a3; }
+    .g-link { margin-top: 18px; background: none; border: 0; color: #a3a3a3; text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
+    .g-help { max-width: 340px; font-size: 13.5px; color: #a3a3a3; line-height: 1.5; text-align: left; background: #141414; border: 1px solid #2b2b2b; border-radius: 12px; padding: 12px 14px; }
+    .shake { animation: shake .35s; }
+    @keyframes shake { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+  </style>
+</head>
+<body>
+  <section class="gate" id="gate">
+    <div class="g-logo">GYM</div>
+    <form id="gForm" autocomplete="off" hidden>
+      <input id="gIn" type="password" placeholder="Clave" autocomplete="current-password" aria-label="Clave">
+      <div id="gMsg" class="g-msg" role="status"></div>
+      <button id="gBtn" type="submit">Entrar</button>
+    </form>
+    <div id="gWait" class="g-msg info">Abriendo…</div>
+    <button id="gForgot" type="button" class="g-link" hidden>¿Olvidaron la clave?</button>
+    <p id="gHelp" class="g-help" hidden>
+      La clave es la que escribieron al ejecutar <b>cifrar.mjs</b> en el PC. Si no la recuerdan,
+      ejecútenlo otra vez con una clave nueva y suban la carpeta <b>publicar</b> a GitHub.
+      Los registros guardados en este celular no se pierden.
+    </p>
+  </section>
+  <script src="gate.js"></script>
+</body>
+</html>
